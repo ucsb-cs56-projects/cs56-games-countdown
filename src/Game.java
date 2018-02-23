@@ -7,6 +7,9 @@ public abstract class Game
     //methods
     public Game(); //honestly might not need since java gives one
     public startGame();
-    
+    public Game nextGame()
+    {
+
+    }
     
 }

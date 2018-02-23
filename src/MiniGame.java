@@ -26,6 +26,7 @@ public abstract class MiniGame
 
     }
 
+
     public void run()
     {
         drawStuff();
@@ -33,7 +34,6 @@ public abstract class MiniGame
 
 	    while(!player_won_ && counter > 0)
 	    {
-
 
 	        if(counter = timer_/2)
 	            giveHint();
