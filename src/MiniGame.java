@@ -19,6 +19,7 @@ public abstract class MiniGame
     long timer_;
 
     //methods
+<<<<<<< HEAD
     //protected abstract drawStuff();
     //protected abstract getInput();
     //protected abstract validateInput();
@@ -32,6 +33,35 @@ public abstract class MiniGame
     }
     
     public boolean playerWon()
+=======
+    protected abstract void drawStuff();
+    protected abstract void getInput();
+    protected abstract void validateInput();
+    protected abstract void giveHint();
+    protected abstract void decrementTimer();
+
+
+
+//    public void run()
+//    {
+//        drawStuff();
+//        getInput();
+//
+//	    while(!player_won_ && counter > 0)
+//	    {
+//
+//	        if(counter == timer_/2)
+//	            giveHint();
+//
+//	        decrementTimer();
+//	    }
+//
+//	    if (!player_won_)
+//	        endGame();
+//    }
+
+    public MiniGame(double timer)
+>>>>>>> 6ad82dbbd88a2da43b16f4a1638e9aaf1e5c6454
     {
         while (!player_won_ && elapsed_time_ < timer_)
         {
