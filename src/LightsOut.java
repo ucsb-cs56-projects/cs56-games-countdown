@@ -7,35 +7,34 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-public class LightsOut
+
+public class LightsOut extends MiniGame
 {
 	//test========
 	public static void main(String[] args)
 	{
-		LightsOut g = new LightsOut();
+		LightsOut g = new LightsOut(60000); //timer in milliseconds (1 minute right now)
+		boolean result = g.playerWon();
+		if (result)
+			System.out.println("Player won the game!");
+		else
+			System.out.println("Player lost!");
 	}
 	//=========test
 
 	//fields
-	private JFrame frame_;
-	private JButton main_menu_; //TODO -- put this on screen
-	private JPanel panel_;
-
 	private final int grid_size_ = 5;
 	private JButton[][] button_grid_;
 	private boolean[][] logical_grid_;
 	private int light_count_;
-	private boolean game_over_;
 
 	//ctors
-	public LightsOut()
+	public LightsOut(long timer)
 	{
-		super();
+		super(timer);
 		light_count_ = 0;
-		game_over_ = false;
+		player_won_ = false;
 		frame_ = new JFrame("LightsOut!");
 		panel_ = new JPanel();
 		panel_.setLayout(new GridLayout(this.grid_size_, 0));
@@ -45,27 +44,28 @@ public class LightsOut
 		{
 			for (int j = 0; j < grid_size_; ++j)
 			{
-				button_grid_[i][j] = new JButton();
-				button_grid_[i][j].setOpaque(true);
-				button_grid_[i][j].addMouseListener(new LightBox(i,j));
-				boolean rand = false; //TODO -- make this an actually random boolean
+				JButton button = new JButton();
+				button.setOpaque(true);
+				button.addMouseListener(new LightBox(i,j));
+				boolean rand = true; //TODO -- make this an actually random boolean
 				logical_grid_[i][j] = rand;
 				if (rand) //light should be on
 				{
 					++light_count_;
-					button_grid_[i][j].setBackground(Color.GREEN);
+					button.setBackground(Color.GREEN);
 				}
 				else //light should be on
 				{
-					button_grid_[i][j].setBackground(Color.WHITE);
+					button.setBackground(Color.WHITE);
 				}
-				this.panel_.add(button_grid_[i][j]);
+				this.panel_.add(button);				
+				button_grid_[i][j] = button;
 			}
 		}
-
 		frame_.add(panel_);
 		frame_.setVisible(true);
 		frame_.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//this.start_timer();
 	}
 
 	//inner class LightBox
@@ -153,7 +153,10 @@ public class LightsOut
 				LightsOut.this.logical_grid_[row][col+1] ^= true;
 			}
 			if (LightsOut.this.light_count_ == 0)
-				LightsOut.this.game_over_ = true;
+			{
+				System.out.println("Game over!");
+				LightsOut.this.player_won_ = true;
+			}
 		}
 	}
 }
