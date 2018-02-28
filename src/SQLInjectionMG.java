@@ -7,7 +7,6 @@ public class SQLInjectionMG extends MiniGame
 
     private String response;
 
-
     private static String[] possibleAnswers = {"a", "b", "c", "d"};
 
     //in terminal for now, so no gui yet
@@ -23,7 +22,7 @@ public class SQLInjectionMG extends MiniGame
             }
 
             @SuppressWarnings("unchecked")
-            // <editor-fold defaultstate="collapsed" desc="Generated Code">
+
             private void initComponents() {
 
                 jScrollPane2 = new javax.swing.JScrollPane();
@@ -121,7 +120,7 @@ public class SQLInjectionMG extends MiniGame
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Game().setVisible(true);
+                new GameFrame().setVisible(true);
             }
         });
         System.out.println("You've come across a website with a form for a username and password.\n" +
