@@ -3,7 +3,7 @@ public class SQLInjectionMG extends MiniGame
 
     private String response;
 
-    private static const String[] possibleAnswers = {"a", "b", "c", "d"};
+    private static String[] possibleAnswers = {"a", "b", "c", "d"};
 
     //in terminal for now, so no gui yet
     protected void drawStuff()

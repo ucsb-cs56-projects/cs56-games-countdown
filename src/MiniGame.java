@@ -1,48 +1,42 @@
+import java.awt.*;
+import javax.swing.*;
+import java.util.*;
+import java.awt.event.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
+
 public abstract class MiniGame
 {
 
     //fields
-    private boolean isInput;
-
-    protected double timer_;
+    //private boolean isInput;
+    //protected double timer_;
     protected boolean player_won_;
-    protected double counter = timer_;
-
+    //protected double counter = timer_;
 
     //methods
     protected abstract drawStuff();
-    protected abstract getInput();
-    protected abstract validateInput();
-    protected abstract giveHint();
-    protected void decrementTimer();
+    //protected abstract getInput();
+    //protected abstract validateInput();
+    //protected abstract giveHint();
+
+    public MiniGame()
+    {
+
+    }
 
     public MiniGame(double timer)
     {
-	this.timer_ = timer;
+	//this.timer_ = timer;
     }
-
-    public endGame()
-    {
-
-    }
-
 
     public void run()
     {
-        drawStuff();
-        getInput();
-
-	    while(!player_won_ && counter > 0)
+	    while(!player_won_)
 	    {
-
-	        if(counter = timer_/2)
-	            giveHint();
-
-	        decrementTimer();
+            this.drawStuff();
 	    }
-
-	    if (!player_won_)
-	        endGame();
     }
 
 }

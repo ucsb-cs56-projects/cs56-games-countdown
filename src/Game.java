@@ -1,13 +1,22 @@
-public abstract class Game
+import java.util.ArrayList;
+
+public class Game
 {
     //fields
     boolean player_won_;
-    
+    ArrayList<MiniGame> games_;
     
     //methods
-    public Game(); //honestly might not need since java gives one
-    public startGame();
-    public Game nextGame()
+    public Game()
+    {
+
+    }
+    
+    public startGame()
+    {
+
+    }
+    public void nextGame()
     {
 
     }
