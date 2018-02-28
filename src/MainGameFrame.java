@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 public class MainGameFrame extends JFrame
 {
+<<<<<<< HEAD
     public static void main(String[] args)
     {
         MainGameFrame frame = new MainGameFrame();
@@ -16,6 +17,8 @@ public class MainGameFrame extends JFrame
         frame.setVisible(true);
         frame.setSize(500, 500);
     }
+=======
+>>>>>>> 99dabb0f433f85a3bd421e0299e5a474c49f44f0
 
     public MainGameFrame()
     {
