@@ -1,7 +1,7 @@
 <project default="compile">
 
 	<property environment="env" />
-	<property name="mainClass" value="LightsOut" />
+	<property name="mainClass" value="MainGameFrame" />
 	<property name="projectPath" value="0000756" />
 	<property name="projectName" value="cs56_games_countdown" />
 	<property name="javadocDest" value="${webRoot}/${projectName}" />

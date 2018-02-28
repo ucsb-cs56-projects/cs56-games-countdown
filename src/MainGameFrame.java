@@ -9,9 +9,13 @@ import javax.swing.JPanel;
 
 public class MainGameFrame extends JFrame
 {
-
-    //JFrame Frame;
-    //JButton Button1;
+    public static void main(String[] args)
+    {
+        MainGameFrame frame = new MainGameFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        frame.setSize(500, 500);
+    }
 
     public MainGameFrame()
     {
@@ -29,9 +33,12 @@ public class MainGameFrame extends JFrame
             {
                 if(event.getSource()==Button1)
                 {
-                    MiniGameFrame mg = new MiniGameFrame();
-                    //Call a function from MiniGameFrame to actually
-                    //make the minigame
+                    LightsOut lights_out = new LightsOut(60000L);
+                    boolean player_won = lights_out.playerWon();
+                    if (player_won)
+                        System.out.println("Player won!");
+                    else
+                        System.out.println("Player lost!");
                 }
             }
         });

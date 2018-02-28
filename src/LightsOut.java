@@ -14,18 +14,6 @@ import javax.swing.BorderFactory;
 
 public class LightsOut extends MiniGame
 {
-	//test========
-	public static void main(String[] args)
-	{
-		LightsOut g = new LightsOut(60000L); //timer in milliseconds (1 minute right now)
-		boolean result = g.playerWon();
-		if (result)
-			System.out.println("Player won the game!");
-		else
-			System.out.println("Player lost!");
-	}
-	//=========test
-
 	//fields
 	private final int grid_size_ = 5;
 	private JButton[][] button_grid_;
@@ -68,7 +56,6 @@ public class LightsOut extends MiniGame
 		frame_.add(panel_);
 		frame_.setSize(new Dimension(500, 500));
 		frame_.setVisible(true);
-		frame_.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.start_timer();
 	}
 

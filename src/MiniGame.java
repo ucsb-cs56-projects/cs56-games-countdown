@@ -33,11 +33,11 @@ public abstract class MiniGame
     
     public boolean playerWon()
     {
-        while (!player_won_ && elapsed_time_ < timer_)
-        {
-            this.elapsed_time_ = (new Date()).getTime() - this.start_time_;
-            frame_.repaint();
-        }
+       // while (!player_won_ && elapsed_time_ < timer_)
+       // {
+        //    this.elapsed_time_ = (new Date()).getTime() - this.start_time_;
+        //    frame_.repaint();
+       // }
         return this.player_won_;
     }
 }
