@@ -1,12 +1,15 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
-
-import javax.swing.BorderFactory;
+import java.util.Date;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.BorderFactory;
 
 
 public class LightsOut extends MiniGame
@@ -14,7 +17,7 @@ public class LightsOut extends MiniGame
 	//test========
 	public static void main(String[] args)
 	{
-		LightsOut g = new LightsOut(60000); //timer in milliseconds (1 minute right now)
+		LightsOut g = new LightsOut(60000L); //timer in milliseconds (1 minute right now)
 		boolean result = g.playerWon();
 		if (result)
 			System.out.println("Player won the game!");
@@ -63,6 +66,7 @@ public class LightsOut extends MiniGame
 			}
 		}
 		frame_.add(panel_);
+		frame_.setSize(new Dimension(500, 500));
 		frame_.setVisible(true);
 		frame_.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//this.start_timer();

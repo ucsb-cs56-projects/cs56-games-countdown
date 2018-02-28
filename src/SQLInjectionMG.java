@@ -1,6 +1,6 @@
 public class SQLInjectionMG extends MiniGame
 {
-    SQLInjectionMG(double timer)
+    SQLInjectionMG(long timer)
     {
         super(timer);
     };

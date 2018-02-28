@@ -1,5 +1,3 @@
-package edu.ucsb.cs56.projects.math.conversion_quiz;
-
 import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
