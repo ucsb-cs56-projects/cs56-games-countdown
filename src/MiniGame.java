@@ -10,39 +10,39 @@ public abstract class MiniGame
 
 
     //methods
-    protected abstract drawStuff();
-    protected abstract getInput();
-    protected abstract validateInput();
-    protected abstract giveHint();
-    protected void decrementTimer();
+    protected abstract void drawStuff();
+    protected abstract void getInput();
+    protected abstract void validateInput();
+    protected abstract void giveHint();
+    protected abstract void decrementTimer();
 
     public MiniGame(double timer)
     {
-	this.timer_ = timer;
+	    this.timer_ = timer;
     }
 
-    public endGame()
+    public boolean endGame()
     {
-
+        return player_won_;
     }
 
 
-    public void run()
-    {
-        drawStuff();
-        getInput();
-
-	    while(!player_won_ && counter > 0)
-	    {
-
-	        if(counter = timer_/2)
-	            giveHint();
-
-	        decrementTimer();
-	    }
-
-	    if (!player_won_)
-	        endGame();
-    }
+//    public void run()
+//    {
+//        drawStuff();
+//        getInput();
+//
+//	    while(!player_won_ && counter > 0)
+//	    {
+//
+//	        if(counter == timer_/2)
+//	            giveHint();
+//
+//	        decrementTimer();
+//	    }
+//
+//	    if (!player_won_)
+//	        endGame();
+//    }
 
 }
