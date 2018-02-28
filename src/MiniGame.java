@@ -26,13 +26,14 @@ public abstract class MiniGame
 
     public MiniGame(long timer)
     {
+        this.frame_ = new JFrame();        
+		frame_.setVisible(true);
         this.elapsed_time_ = 0L;
         this.timer_ = timer;
         this.start_time_ = System.currentTimeMillis();
     }
     
     public boolean playerWon()
-<<<<<<< HEAD
     {
        // while (!player_won_ && elapsed_time_ < timer_)
        // {
@@ -40,18 +41,5 @@ public abstract class MiniGame
         //    frame_.repaint();
        // }
         return this.player_won_;
-=======
-    {
-        return this.player_won_;
-    }
-
-    public MiniGame(double timer)
-    {
-        while (!player_won_ && elapsed_time_ < timer_)
-        {
-            this.elapsed_time_ = (new Date()).getTime() - this.start_time_;
-            frame_.repaint();
-        }
->>>>>>> 99dabb0f433f85a3bd421e0299e5a474c49f44f0
     }
 }

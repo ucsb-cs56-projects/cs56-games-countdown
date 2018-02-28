@@ -1,5 +1,4 @@
 import java.awt.Color;
-<<<<<<< HEAD
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -11,14 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.BorderFactory;
 
-=======
-import java.awt.event.MouseAdapter;
-import java.awt.GridLayout;
-import java.awt.event.MouseEvent;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
->>>>>>> 99dabb0f433f85a3bd421e0299e5a474c49f44f0
 
 public class LightsOut extends MiniGame
 {
@@ -34,7 +25,7 @@ public class LightsOut extends MiniGame
 		super(timer);
 		light_count_ = 0;
 		player_won_ = false;
-		frame_ = new JFrame("LightsOut!");
+		frame_.setTitle("Lights Out!");
 		panel_ = new JPanel();
 		panel_.setLayout(new GridLayout(this.grid_size_, 0));
 		button_grid_ = new JButton[grid_size_][grid_size_];
