@@ -1,10 +1,7 @@
-import java.awt.*;
-import javax.swing.*;
-import java.util.*;
-import java.awt.event.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.text.Document;
+import java.util.Date;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JButton;
 
 public abstract class MiniGame
 {
@@ -12,31 +9,35 @@ public abstract class MiniGame
     //fields
     //private boolean isInput;
     //protected double timer_;
+    protected JFrame frame_;
+    protected JButton main_menu_; //TODO -- put this on screen
+	protected JPanel panel_;
+
     protected boolean player_won_;
-    //protected double counter = timer_;
+    long start_time_;
+    long elapsed_time_;
+    long timer_;
 
     //methods
-    protected abstract drawStuff();
+    //protected abstract drawStuff();
     //protected abstract getInput();
     //protected abstract validateInput();
     //protected abstract giveHint();
 
-    public MiniGame()
+    public MiniGame(long timer)
     {
-
+        this.elapsed_time_ = 0L;
+        this.timer_ = timer;
+        this.start_time_ = System.currentTimeMillis();
     }
-
-    public MiniGame(double timer)
+    
+    public boolean playerWon()
     {
-	//this.timer_ = timer;
+        while (!player_won_ && elapsed_time_ < timer_)
+        {
+            this.elapsed_time_ = (new Date()).getTime() - this.start_time_;
+            frame_.repaint();
+        }
+        return this.player_won_;
     }
-
-    public void run()
-    {
-	    while(!player_won_)
-	    {
-            this.drawStuff();
-	    }
-    }
-
 }
