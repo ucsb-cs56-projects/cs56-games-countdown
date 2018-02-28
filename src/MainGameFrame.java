@@ -10,9 +10,6 @@ import javax.swing.JPanel;
 public class MainGameFrame extends JFrame
 {
 
-    //JFrame Frame;
-    //JButton Button1;
-
     public MainGameFrame()
     {
         super("COUNTDOWN");

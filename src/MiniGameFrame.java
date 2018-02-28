@@ -1,6 +1,6 @@
 import javax.swing.JFrame;
 
-public class MiniGameFrame extends JFrame {
+public class MiniGameFrame {
 
     JFrame mgFrame = new JFrame();
 
