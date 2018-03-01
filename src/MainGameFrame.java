@@ -39,6 +39,13 @@ public class MainGameFrame extends JFrame
                         System.out.println("Player won!");
                     else
                         System.out.println("Player lost!");
+
+                    SQLInjection sqlQuiz = new SQLInjection(500L, "You've come across a website with a form for a username and password.\n" +
+                            "After further inspection, you were able to discover that how the website\n" +
+                            "stores and accesses its username and password:\n\n" + "uName = getRequestString('username');\n" +
+                            "uPass = getRequestString('userpassword');\n\n" +
+                            "sql: 'SELECT * FROM Users WHERE Name = ' + uName + ' AND Pass = ' + uPass + '\n\n" +
+                            "To beat this challenge you need to login 'without' a username or password.");
                 }
             }
         });
