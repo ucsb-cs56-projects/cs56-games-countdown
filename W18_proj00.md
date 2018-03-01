@@ -15,7 +15,7 @@
  
   
 ### Software
-  * The software runs in both the in a GUI environment. It currently shows the minigames available as soon as you click start.
+  * The software runs in a GUI environment. It currently shows the minigames available as soon as you click start.
    
 ### User Should Stories
   * As a user, I would like to have more minigames to play.
