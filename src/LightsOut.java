@@ -28,7 +28,7 @@ public class LightsOut extends MiniGame
 		super(timer);
 		light_count_ = 0;
 		player_won_ = false;
-		frame_.setTitle("Lights Out!");
+		this.setTitle("Lights Out!");
 		panel_ = new JPanel();
 		panel_.setLayout(new GridLayout(this.grid_size_, 0));
 		button_grid_ = new MyButton[grid_size_][grid_size_];	
@@ -66,8 +66,8 @@ public class LightsOut extends MiniGame
 					this.button_grid_[i][j].toggle();
 			}
 		}
-		frame_.add(panel_);
-		frame_.setSize(new Dimension(500, 500));
+		this.add(panel_);
+		this.setSize(new Dimension(500, 500));
 		//this.start_timer();
 	}
 
