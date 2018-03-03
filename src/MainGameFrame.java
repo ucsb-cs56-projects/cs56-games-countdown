@@ -47,6 +47,7 @@ public class MainGameFrame extends JFrame
                             "uPass = getRequestString('userpassword');\n\n" +
                             "sql: 'SELECT * FROM Users WHERE Name = ' + uName + ' AND Pass = ' + uPass + '\n\n" +
                             "To beat this challenge you need to login 'without' a username or password.");
+                    Maze maze = new Maze(1000L);
                 }
             }
         });
