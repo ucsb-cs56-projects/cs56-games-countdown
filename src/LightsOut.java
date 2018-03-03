@@ -54,7 +54,6 @@ public class LightsOut extends MiniGame
 		}
 		frame_.add(panel_);
 		frame_.setSize(new Dimension(500, 500));
-		frame_.setVisible(true);
 		//this.start_timer();
 	}
 
