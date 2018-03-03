@@ -107,19 +107,19 @@ public class LightsOut extends MiniGame
 	//inner class LightBox
 	class LightBox extends MouseAdapter
 	{
-		private int row;
-		private int col;
+		private int row_;
+		private int col_;
 
-		public LightBox(int i, int j)
+		public LightBox(int row, int col)
 		{
 			super();
-			row = i;
-			col = j;		
+			this.row_ = row;
+			this.col_ = col;		
 		}
 
 		public void mouseReleased(MouseEvent e)
 		{
-			LightsOut.this.button_grid_[row][col].toggle();
+			LightsOut.this.button_grid_[row_][col_].toggle();
 			if (LightsOut.this.light_count_ == 0)
 			{
 				LightsOut.this.player_won_ = true;

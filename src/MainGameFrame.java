@@ -19,7 +19,8 @@ public class MainGameFrame extends JFrame
 
     public MainGameFrame()
     {
-        super("COUNTDOWN");
+        super();
+        this.setTitle("COUNTDOWN");
         JPanel panel = new JPanel();
         JButton Button1 = new JButton("Start Game");
         panel.add(Button1);
