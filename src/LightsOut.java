@@ -4,20 +4,23 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.BorderFactory;
+import java.util.Random;
 
 
 public class LightsOut extends MiniGame
 {
 	//fields
 	private final int grid_size_ = 5;
-	private JButton[][] button_grid_;
-	private boolean[][] logical_grid_;
+	private MyButton[][] button_grid_;
 	private int light_count_;
+	private final Color on_color_ = Color.GREEN;
+	private final Color off_color_ = Color.WHITE;
 
 	//ctors
 	public LightsOut(long timer)
@@ -25,37 +28,80 @@ public class LightsOut extends MiniGame
 		super(timer);
 		light_count_ = 0;
 		player_won_ = false;
-		frame_.setTitle("Lights Out!");
+		this.setTitle("Lights Out!");
 		panel_ = new JPanel();
 		panel_.setLayout(new GridLayout(this.grid_size_, 0));
-		button_grid_ = new JButton[grid_size_][grid_size_];
-		logical_grid_ = new boolean[grid_size_][grid_size_];
+		button_grid_ = new MyButton[grid_size_][grid_size_];	
+		Random rng = new Random(this.start_time_);
+		
+		for (int row = 0; row < this.grid_size_; ++row)
+		{
+			for (int col = 0; col < this.grid_size_; ++col)
+			{
+				LightBox lightbox = new LightBox(row,col);
+				MyButton button = new MyButton();
+				button.setOpaque(true);
+				button.addMouseListener(lightbox);
+				button.setBackground(this.off_color_);
+				this.panel_.add(button);
+				this.button_grid_[row][col] = button;
+			}
+		}
 		for (int i = 0; i < grid_size_; ++i)
 		{
 			for (int j = 0; j < grid_size_; ++j)
 			{
-				JButton button = new JButton();
-				button.setOpaque(true);
-				button.addMouseListener(new LightBox(i,j));
-				boolean rand = true; //TODO -- make this an actually random boolean
-				logical_grid_[i][j] = rand;
-				if (rand) //light should be on
-				{
-					++light_count_;
-					button.setBackground(Color.GREEN);
-				}
-				else //light should be on
-				{
-					button.setBackground(Color.WHITE);
-				}
-				this.panel_.add(button);				
-				button_grid_[i][j] = button;
+				ArrayList<MyButton> neighbors = new ArrayList<MyButton>();
+				if (i > 0)
+					neighbors.add(this.button_grid_[i-1][j]);
+				if (i < this.grid_size_-1)
+					neighbors.add(this.button_grid_[i+1][j]);
+				if (j > 0)
+					neighbors.add(this.button_grid_[i][j-1]);
+				if (j < this.grid_size_-1)
+					neighbors.add(this.button_grid_[i][j+1]);
+				this.button_grid_[i][j].neighbors = neighbors;
+				
+				if (rng.nextBoolean())
+					this.button_grid_[i][j].toggle();
 			}
 		}
-		frame_.add(panel_);
-		frame_.setSize(new Dimension(500, 500));
-		frame_.setVisible(true);
+		this.add(panel_);
+		this.setSize(new Dimension(500, 500));
 		//this.start_timer();
+	}
+
+	class MyButton extends JButton
+	{
+		private ArrayList<MyButton> neighbors;
+
+		private void toggleThis()
+		{
+			if (this.getBackground() == LightsOut.this.on_color_)
+			{
+				this.setBackground(LightsOut.this.off_color_); //turn on the light
+				--LightsOut.this.light_count_;
+			}
+			else
+			{
+				this.setBackground(LightsOut.this.on_color_); //turn off the light
+				++LightsOut.this.light_count_;
+			}
+		}
+
+		private void toggleNeighbors()
+		{
+			for (MyButton neighbor : neighbors)
+			{
+				neighbor.toggleThis();
+			}
+		}
+
+		public void toggle()
+		{
+			this.toggleThis();
+			this.toggleNeighbors();
+		}
 	}
 
 	//inner class LightBox
@@ -68,84 +114,16 @@ public class LightsOut extends MiniGame
 		{
 			super();
 			row = i;
-			col = j;
-			
+			col = j;		
 		}
 
 		public void mouseReleased(MouseEvent e)
 		{
-			if (LightsOut.this.logical_grid_[row][col]) //light is on, but will be turned off
-			{
-				--LightsOut.this.light_count_;
-				button_grid_[row][col].setBackground(Color.WHITE); //turn light off
-			}
-			else
-			{
-				++LightsOut.this.light_count_;	
-				button_grid_[row][col].setBackground(Color.GREEN); //turn light on
-			}		
-			LightsOut.this.logical_grid_[row][col] ^= true; //xor with true -> if the lightbox is on it goes off, else it goes on.
-			
-			if (row > 0)
-			{
-				if (LightsOut.this.logical_grid_[row-1][col]) //light is on, but will be turned off
-				{
-					--LightsOut.this.light_count_;
-					button_grid_[row-1][col].setBackground(Color.WHITE); //turn light off
-				}
-				else
-				{
-					++LightsOut.this.light_count_;	
-					button_grid_[row-1][col].setBackground(Color.GREEN); //turn light on
-				}		
-				LightsOut.this.logical_grid_[row-1][col] ^= true;
-			}
-			if (row < LightsOut.this.grid_size_ - 1)
-			{
-				if (LightsOut.this.logical_grid_[row+1][col]) //light is on, but will be turned off
-				{
-					--LightsOut.this.light_count_;
-					button_grid_[row+1][col].setBackground(Color.WHITE); //turn light off
-				}
-				else
-				{
-					++LightsOut.this.light_count_;	
-					button_grid_[row+1][col].setBackground(Color.GREEN); //turn light on
-				}			
-				LightsOut.this.logical_grid_[row+1][col] ^= true;
-			}
-			if (col > 0)
-			{
-				if (LightsOut.this.logical_grid_[row][col-1]) //light is on, but will be turned off
-				{
-					--LightsOut.this.light_count_;
-					button_grid_[row][col-1].setBackground(Color.WHITE); //turn light off
-				}
-				else
-				{
-					++LightsOut.this.light_count_;	
-					button_grid_[row][col-1].setBackground(Color.GREEN); //turn light on
-				}				
-				LightsOut.this.logical_grid_[row][col-1] ^= true;
-			}
-			if (col < LightsOut.this.grid_size_ - 1)
-			{
-				if (LightsOut.this.logical_grid_[row][col+1]) //light is on, but will be turned off
-				{
-					--LightsOut.this.light_count_;
-					button_grid_[row][col+1].setBackground(Color.WHITE); //turn light off
-				}
-				else
-				{
-					++LightsOut.this.light_count_;	
-					button_grid_[row][col+1].setBackground(Color.GREEN); //turn light on
-				}				
-				LightsOut.this.logical_grid_[row][col+1] ^= true;
-			}
+			LightsOut.this.button_grid_[row][col].toggle();
 			if (LightsOut.this.light_count_ == 0)
 			{
-				System.out.println("Game over!");
 				LightsOut.this.player_won_ = true;
+				System.out.println("player won!");
 			}
 		}
 	}

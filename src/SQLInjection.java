@@ -4,20 +4,30 @@ import java.awt.event.ActionListener;
 
 public class SQLInjection extends MiniGame
 {
-
-    private String question;
-    private String response;
+	protected JTextField textField_;
+	protected JTextArea textArea_;
+    private String question; //This is never used
+    private String response; //This is also never used
     private static String[] possibleAnswers = {"\" or \"\"=\"", "\" OR \"\"=\"", "\" OR 1=1\"", "\" or 1=1\""};
     private JButton submit = new JButton("Submit");
+    private JLabel outcome_;
 
-    SQLInjection(long timer, String textField)
+    SQLInjection(long timer, String textArea)
     {
-        super(timer, textField);
-        this.question = textField;
-        super.frame_.setSize(550, 600);
-        super.frame_.setTitle("SQL Injection!");
-        super.panel_.add(submit);
+        super(timer);
+        this.panel_ = new JPanel();
+        this.outcome_ = new JLabel();
+        this.textArea_ = new JTextArea(textArea);
+        this.textArea_.setEditable(false);
+        this.panel_.add(this.textArea_);
+        this.textField_ = new JTextField(25);
+        this.panel_.add(this.textField_);
+        this.setVisible(true);
+        this.question = textArea;
+        this.setSize(550, 600);
+        this.setTitle("SQL Injection!");
 
+        this.panel_.add(submit);
         submit.addActionListener(new ActionListener()
         {
             @Override
@@ -25,16 +35,17 @@ public class SQLInjection extends MiniGame
             {
                 if (event.getSource() == submit)
                 {
-                    if (validateInput(SQLInjection.super.textField_.getText()))
+                    boolean input_is_valid = validateInput(SQLInjection.this.textField_.getText());
+                    if (input_is_valid)
                         System.out.println("Player won!");
                     else
                         System.out.println("Player lost!");
-
-                   SQLInjection.super.panel_.add(endResult(validateInput(SQLInjection.super.textField_.getText())));
-
+                    SQLInjection.this.endResult(input_is_valid);
                 }
             }
         });
+        this.panel_.add(outcome_);
+        this.add(this.panel_);
     };
 
 
@@ -46,23 +57,16 @@ public class SQLInjection extends MiniGame
         {
             if (input.equals(answer))
                 SQLInjection.this.player_won_ = true;
-
         }
 
         return SQLInjection.this.player_won_;
     }
 
-    public JTextField endResult(boolean submission)
+    public void endResult(boolean input_is_valid)
     {
-        JTextField result = new JTextField();
-        result.setEditable(false);
-
-        if (submission)
-            result.setText("WINNER!");
+        if (input_is_valid)
+            this.outcome_.setText("WINNER!");
         else
-            result.setText("LOSER! DARSHH");
-
-        return result;
+            this.outcome_.setText("LOSER! DARSHH");
     }
-
 }
