@@ -16,11 +16,11 @@ import java.util.Random;
 public class LightsOut extends MiniGame
 {
 	//fields
-	private final int grid_size_ = 5;
+	private final int GRID_SIZE_ = 5;
 	private MyButton[][] button_grid_;
 	private int light_count_;
-	private final Color on_color_ = Color.GREEN;
-	private final Color off_color_ = Color.WHITE;
+	private final Color ON_COLOR_ = Color.GREEN;
+	private final Color OFF_COLOR_ = Color.WHITE;
 
 	//ctors
 	public LightsOut(long timer)
@@ -30,37 +30,37 @@ public class LightsOut extends MiniGame
 		player_won_ = false;
 		this.setTitle("Lights Out!");
 		panel_ = new JPanel();
-		panel_.setLayout(new GridLayout(this.grid_size_, 0));
-		button_grid_ = new MyButton[grid_size_][grid_size_];	
+		panel_.setLayout(new GridLayout(this.GRID_SIZE_, 0));
+		button_grid_ = new MyButton[GRID_SIZE_][GRID_SIZE_];	
 		Random rng = new Random(this.start_time_);
 		
-		for (int row = 0; row < this.grid_size_; ++row)
+		for (int row = 0; row < this.GRID_SIZE_; ++row)
 		{
-			for (int col = 0; col < this.grid_size_; ++col)
+			for (int col = 0; col < this.GRID_SIZE_; ++col)
 			{
 				LightBox lightbox = new LightBox(row,col);
 				MyButton button = new MyButton();
 				button.setOpaque(true);
 				button.addMouseListener(lightbox);
-				button.setBackground(this.off_color_);
+				button.setBackground(this.OFF_COLOR_);
 				this.panel_.add(button);
 				this.button_grid_[row][col] = button;
 			}
 		}
-		for (int i = 0; i < grid_size_; ++i)
+		for (int i = 0; i < GRID_SIZE_; ++i)
 		{
-			for (int j = 0; j < grid_size_; ++j)
+			for (int j = 0; j < GRID_SIZE_; ++j)
 			{
 				ArrayList<MyButton> neighbors = new ArrayList<MyButton>();
 				if (i > 0)
 					neighbors.add(this.button_grid_[i-1][j]);
-				if (i < this.grid_size_-1)
+				if (i < this.GRID_SIZE_-1)
 					neighbors.add(this.button_grid_[i+1][j]);
 				if (j > 0)
 					neighbors.add(this.button_grid_[i][j-1]);
-				if (j < this.grid_size_-1)
+				if (j < this.GRID_SIZE_-1)
 					neighbors.add(this.button_grid_[i][j+1]);
-				this.button_grid_[i][j].neighbors = neighbors;
+				this.button_grid_[i][j].neighbors_ = neighbors;
 				
 				if (rng.nextBoolean())
 					this.button_grid_[i][j].toggle();
@@ -73,25 +73,25 @@ public class LightsOut extends MiniGame
 
 	class MyButton extends JButton
 	{
-		private ArrayList<MyButton> neighbors;
+		private ArrayList<MyButton> neighbors_;
 
 		private void toggleThis()
 		{
-			if (this.getBackground() == LightsOut.this.on_color_)
+			if (this.getBackground() == LightsOut.this.ON_COLOR_)
 			{
-				this.setBackground(LightsOut.this.off_color_); //turn on the light
+				this.setBackground(LightsOut.this.OFF_COLOR_); //turn on the light
 				--LightsOut.this.light_count_;
 			}
 			else
 			{
-				this.setBackground(LightsOut.this.on_color_); //turn off the light
+				this.setBackground(LightsOut.this.ON_COLOR_); //turn off the light
 				++LightsOut.this.light_count_;
 			}
 		}
 
 		private void toggleNeighbors()
 		{
-			for (MyButton neighbor : neighbors)
+			for (MyButton neighbor : this.neighbors_)
 			{
 				neighbor.toggleThis();
 			}
