@@ -12,7 +12,7 @@ public class MainGameFrame extends JFrame
 {
     private static final String MAIN_MENU_ = "main menu";
     private static final String ACTIVE_GAME_ = "active game";
-    
+    private static final int TOP_MENU_SIZE_ = 50;
     CardLayout card_layout_;
     JPanel main_panel_;
     JPanel main_menu_;
@@ -32,9 +32,11 @@ public class MainGameFrame extends JFrame
         card_layout_ = new CardLayout();
         main_panel_ = new JPanel(card_layout_);
 
-        JButton start_lights_out = new JButton("Play 'Lights Out!'");
         main_menu_ = new JPanel();  
+        JButton start_lights_out = new JButton("Play 'Lights Out!'");        
         main_menu_.add(start_lights_out);
+        JButton start_maze = new JButton("Play 'Maze'");
+        main_menu_.add(start_maze);
         main_panel_.add(main_menu_, MAIN_MENU_);
 
         top_menu_ = new JPanel();
@@ -42,8 +44,9 @@ public class MainGameFrame extends JFrame
         top_menu_.add(main_menu_button);     
         split_pane_ = new JSplitPane();
         split_pane_.setOrientation(JSplitPane.VERTICAL_SPLIT);
-        split_pane_.setDividerLocation(50);
-        split_pane_.setTopComponent(top_menu_);
+        split_pane_.setDividerLocation(TOP_MENU_SIZE_);
+        split_pane_.setTopComponent(top_menu_);        
+        split_pane_.setEnabled(false);
         
         this.setTitle("COUNTDOWN");
         this.setLayout(new GridLayout());
@@ -78,6 +81,32 @@ public class MainGameFrame extends JFrame
             }
         });
 
+        start_maze.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent event)
+            {
+                if(event.getSource()==start_maze)
+                {                  
+                    Maze maze = new Maze(60000L);                         
+                    MainGameFrame.this.setActiveGame(maze);
+                    // boolean player_won = lights_out.playerWon();
+                    // if (player_won)
+                    //     System.out.println("Player won!");
+                    // else
+                    //     System.out.println("Player lost!");
+
+                    // SQLInjection sqlQuiz = new SQLInjection(500L, "You've come across a website with a form for a username and password.\n" +
+                    //         "After further inspection, you were able to discover that how the website\n" +
+                    //         "stores and accesses its username and password:\n\n" + "uName = getRequestString('username');\n" +
+                    //         "uPass = getRequestString('userpassword');\n\n" +
+                    //         "sql: 'SELECT * FROM Users WHERE Name = ' + uName + ' AND Pass = ' + uPass + '\n\n" +
+                    //         "To beat this challenge you need to login 'without' a username or password.");
+                    //Maze maze = new Maze(1000L);
+                }
+            }
+        });
+        
         main_menu_button.addActionListener(new ActionListener()
         {
             @Override
@@ -95,6 +124,8 @@ public class MainGameFrame extends JFrame
         this.split_pane_.setBottomComponent(minigame);
         this.main_panel_.add(split_pane_);
         this.card_layout_.next(main_panel_);
+        minigame.setFocusable(true);
+        minigame.requestFocusInWindow();
     }
 
 }
