@@ -21,6 +21,7 @@ public class LightsOut extends MiniGame
 	private int light_count_;
 	private final Color ON_COLOR_ = Color.GREEN;
 	private final Color OFF_COLOR_ = Color.WHITE;
+	public static final String LIGHTSOUT = "Lights Out!";
 
 	//ctors
 	public LightsOut(long timer)
@@ -28,9 +29,7 @@ public class LightsOut extends MiniGame
 		super(timer);
 		light_count_ = 0;
 		player_won_ = false;
-		this.setTitle("Lights Out!");
-		panel_ = new JPanel();
-		panel_.setLayout(new GridLayout(this.GRID_SIZE_, 0));
+		this.setLayout(new GridLayout(this.GRID_SIZE_, 0));
 		button_grid_ = new MyButton[GRID_SIZE_][GRID_SIZE_];	
 		Random rng = new Random(this.start_time_);
 		
@@ -43,7 +42,7 @@ public class LightsOut extends MiniGame
 				button.setOpaque(true);
 				button.addMouseListener(lightbox);
 				button.setBackground(this.OFF_COLOR_);
-				this.panel_.add(button);
+				this.add(button);
 				this.button_grid_[row][col] = button;
 			}
 		}
@@ -66,8 +65,6 @@ public class LightsOut extends MiniGame
 					this.button_grid_[i][j].toggle();
 			}
 		}
-		this.add(panel_);
-		this.setSize(new Dimension(500, 500));
 		//this.start_timer();
 	}
 

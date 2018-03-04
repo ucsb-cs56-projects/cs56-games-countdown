@@ -1,15 +1,11 @@
 import java.util.Date;
 import javax.swing.*;
 
-public abstract class MiniGame extends JFrame
+public abstract class MiniGame extends JPanel   
 {
-
     //fields
     //private boolean isInput;
     //protected double timer_;
-    protected JButton main_menu_; //TODO -- put this on screen
-	protected JPanel panel_;
-
     protected boolean player_won_;
     long start_time_;
     long elapsed_time_;
@@ -23,8 +19,7 @@ public abstract class MiniGame extends JFrame
 
     public MiniGame(long timer)
     {
-        super();    
-		this.setVisible(true);
+        super();
         this.elapsed_time_ = 0L;
         this.timer_ = timer;
         this.start_time_ = System.currentTimeMillis();
