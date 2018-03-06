@@ -15,19 +15,17 @@ public class SQLInjection extends MiniGame
     SQLInjection(long timer, String textArea)
     {
         super(timer);
-        this.panel_ = new JPanel();
         this.outcome_ = new JLabel();
         this.textArea_ = new JTextArea(textArea);
         this.textArea_.setEditable(false);
-        this.panel_.add(this.textArea_);
+        this.add(this.textArea_);
         this.textField_ = new JTextField(25);
-        this.panel_.add(this.textField_);
+        this.add(this.textField_);
         this.setVisible(true);
         this.question = textArea;
         this.setSize(550, 600);
-        this.setTitle("SQL Injection!");
 
-        this.panel_.add(submit);
+        this.add(submit);
         submit.addActionListener(new ActionListener()
         {
             @Override
@@ -44,8 +42,7 @@ public class SQLInjection extends MiniGame
                 }
             }
         });
-        this.panel_.add(outcome_);
-        this.add(this.panel_);
+        this.add(outcome_);
     };
 
 
