@@ -1,3 +1,5 @@
+import sun.applet.Main;
+
 import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -37,6 +39,10 @@ public class MainGameFrame extends JFrame
         main_menu_.add(start_lights_out);
         JButton start_maze = new JButton("Play 'Maze'");
         main_menu_.add(start_maze);
+        JButton start_SQL_inj = new JButton("Try 'SQL Injection'");
+        main_menu_.add(start_SQL_inj);
+        JButton start_PopupWars = new JButton("Try 'Whack-a-Mole!'");
+        main_menu_.add(start_PopupWars);
         main_panel_.add(main_menu_, MAIN_MENU_);
 
         top_menu_ = new JPanel();
@@ -64,19 +70,6 @@ public class MainGameFrame extends JFrame
                 {                  
                     LightsOut lights_out = new LightsOut(60000L);                         
                     MainGameFrame.this.setActiveGame(lights_out);
-                    // boolean player_won = lights_out.playerWon();
-                    // if (player_won)
-                    //     System.out.println("Player won!");
-                    // else
-                    //     System.out.println("Player lost!");
-
-                    // SQLInjection sqlQuiz = new SQLInjection(500L, "You've come across a website with a form for a username and password.\n" +
-                    //         "After further inspection, you were able to discover that how the website\n" +
-                    //         "stores and accesses its username and password:\n\n" + "uName = getRequestString('username');\n" +
-                    //         "uPass = getRequestString('userpassword');\n\n" +
-                    //         "sql: 'SELECT * FROM Users WHERE Name = ' + uName + ' AND Pass = ' + uPass + '\n\n" +
-                    //         "To beat this challenge you need to login 'without' a username or password.");
-                    //Maze maze = new Maze(1000L);
                 }
             }
         });
@@ -90,19 +83,38 @@ public class MainGameFrame extends JFrame
                 {                  
                     Maze maze = new Maze(60000L);                         
                     MainGameFrame.this.setActiveGame(maze);
-                    // boolean player_won = lights_out.playerWon();
-                    // if (player_won)
-                    //     System.out.println("Player won!");
-                    // else
-                    //     System.out.println("Player lost!");
+                }
+            }
+        });
 
-                    // SQLInjection sqlQuiz = new SQLInjection(500L, "You've come across a website with a form for a username and password.\n" +
-                    //         "After further inspection, you were able to discover that how the website\n" +
-                    //         "stores and accesses its username and password:\n\n" + "uName = getRequestString('username');\n" +
-                    //         "uPass = getRequestString('userpassword');\n\n" +
-                    //         "sql: 'SELECT * FROM Users WHERE Name = ' + uName + ' AND Pass = ' + uPass + '\n\n" +
-                    //         "To beat this challenge you need to login 'without' a username or password.");
-                    //Maze maze = new Maze(1000L);
+        start_SQL_inj.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent event)
+            {
+                if(event.getSource()==start_SQL_inj)
+                {
+
+                     SQLInjection sqlQuiz = new SQLInjection(500L, "You've come across a website with a form for a username and password.\n" +
+                             "After further inspection, you were able to discover that how the website\n" +
+                             "stores and accesses its username and password:\n\n" + "uName = getRequestString('username');\n" +
+                             "uPass = getRequestString('userpassword');\n\n" +
+                             "sql: 'SELECT * FROM Users WHERE Name = ' + uName + ' AND Pass = ' + uPass + '\n\n" +
+                             "To beat this challenge you need to login 'without' a username or password.");
+                    MainGameFrame.this.setActiveGame(sqlQuiz);
+                }
+            }
+        });
+
+        start_PopupWars.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent event)
+            {
+                if(event.getSource()==start_PopupWars)
+                {
+                    PopupWars popup = new PopupWars(1000L);
+                    MainGameFrame.this.setActiveGame(popup);
                 }
             }
         });
