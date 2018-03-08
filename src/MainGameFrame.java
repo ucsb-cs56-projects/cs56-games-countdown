@@ -1,5 +1,3 @@
-import sun.applet.Main;
-
 import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -41,8 +39,8 @@ public class MainGameFrame extends JFrame
         main_menu_.add(start_maze);
         JButton start_SQL_inj = new JButton("Try 'SQL Injection'");
         main_menu_.add(start_SQL_inj);
-        JButton start_PopupWars = new JButton("Try 'Whack-a-Mole!'");
-        main_menu_.add(start_PopupWars);
+        JButton start_WhackAMole = new JButton("Try 'Whack-a-Mole!'");
+        main_menu_.add(start_WhackAMole);
         main_panel_.add(main_menu_, MAIN_MENU_);
 
         top_menu_ = new JPanel();
@@ -106,15 +104,15 @@ public class MainGameFrame extends JFrame
             }
         });
 
-        start_PopupWars.addActionListener(new ActionListener()
+        start_WhackAMole.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent event)
             {
-                if(event.getSource()==start_PopupWars)
+                if(event.getSource()==start_WhackAMole)
                 {
-                    PopupWars popup = new PopupWars(1000L);
-                    MainGameFrame.this.setActiveGame(popup);
+                    WhackAMole wam = new WhackAMole(1000L);
+                    MainGameFrame.this.setActiveGame(wam);
                 }
             }
         });
