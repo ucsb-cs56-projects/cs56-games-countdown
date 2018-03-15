@@ -5,10 +5,7 @@ import java.awt.event.ActionListener;
 
 public class SQLInjection extends MiniGame
 {
-	protected JTextField textField_;
 	protected JTextArea textArea_;
-    private String question; //This is never used
-    private String response; //This is also never used
     private static String[] possibleAnswers = {"\" or \"\"=\"", "\" OR \"\"=\"", "\" OR 1=1\"", "\" or 1=1\""};
     private JButton answer = new JButton("\" OR \"\"=\"");
     private JButton fake_answer1 = new JButton("1=1");
@@ -25,7 +22,6 @@ public class SQLInjection extends MiniGame
         this.textArea_.setEditable(false);
         this.add(this.textArea_);
         this.setVisible(true);
-        this.question = textArea;
 
         JPanel buttonPanel  = new JPanel();
         buttonPanel.setLayout(new FlowLayout());

@@ -19,7 +19,6 @@ public class MainGameFrame extends JFrame
     JPanel top_menu_;
     JPanel minigame_panels_;
     JSplitPane split_pane_;
-    private Minigame active_minigame_;
 
     public static void main(String[] args)
     {
