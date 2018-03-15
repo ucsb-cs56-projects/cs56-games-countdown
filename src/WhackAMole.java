@@ -83,7 +83,7 @@ public class WhackAMole extends MiniGame
     {
 
         ScheduledExecutorService mole_mover = Executors.newScheduledThreadPool(1);
-        self = mole_mover.scheduleAtFixedRate(moveMoleRunnable, 0, 250, TimeUnit.MILLISECONDS);
+        self = mole_mover.scheduleAtFixedRate(moveMoleRunnable, 0, 300, TimeUnit.MILLISECONDS);
 
     }
 

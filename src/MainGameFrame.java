@@ -98,7 +98,9 @@ public class MainGameFrame extends JFrame
                              "stores and accesses its username and password:\n\n" + "uName = getRequestString('username');\n" +
                              "uPass = getRequestString('userpassword');\n\n" +
                              "sql: 'SELECT * FROM Users WHERE Name = ' + uName + ' AND Pass = ' + uPass + '\n\n" +
-                             "To beat this challenge you need to login 'without' a username or password.");
+                             "To beat this challenge you need to login 'without' a username or password.\n\n" +
+                             "Which of the following 4 inputs if inserted in a login form would bypass the login?"
+                     );
                     MainGameFrame.this.setActiveGame(sqlQuiz);
                 }
             }
