@@ -26,4 +26,4 @@ Features you should add: Controls explanation and game instructions screen befor
 
 Known Bugs: The whack-a-mole minigame always places the button in the top-center region of the screen when the game starts. Make this random somehow. Also the whack-a-mole minigame does not scale the bounds that the button can appear in when the screen is resized.
 
-Advice: Derive every minigame you make from the Minigame class. Google what the game "Lightsout!" is to understand what the objective of that game is (you should probably make instructions for each game as a part of a control screen presented before the game starts).
+Advice: Derive every minigame you make from the Minigame class. Google what the game "Lightsout!" is to understand what the objective of that game is (you should probably make instructions for each game as a part of a control screen presented before the game starts). Move any graphics resources (i.e. Mole.jpg) to a separate folder.
