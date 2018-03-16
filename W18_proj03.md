@@ -1,1 +1,6 @@
-
+[Issue #6](https://github.com/ucsb-cs56-projects/cs56-games-countdown/issues/6)
+[Issue #7](https://github.com/ucsb-cs56-projects/cs56-games-countdown/issues/7)
+[Issue #13](https://github.com/ucsb-cs56-projects/cs56-games-countdown/issues/13)
+[Issue #14](https://github.com/ucsb-cs56-projects/cs56-games-countdown/issues/14)
+[Issue #24](https://github.com/ucsb-cs56-projects/cs56-games-countdown/issues/24)
+[Issue #25](https://github.com/ucsb-cs56-projects/cs56-games-countdown/issues/25)
