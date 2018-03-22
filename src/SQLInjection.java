@@ -1,40 +1,86 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SQLInjection extends MiniGame
 {
-
-    private String question;
-    private String response;
+	protected JTextArea textArea_;
     private static String[] possibleAnswers = {"\" or \"\"=\"", "\" OR \"\"=\"", "\" OR 1=1\"", "\" or 1=1\""};
-    private JButton submit = new JButton("Submit");
+    private JButton answer = new JButton("\" OR \"\"=\"");
+    private JButton fake_answer1 = new JButton("1=1");
+    private JButton fake_answer2 = new JButton("admin OR \"\"");
+    private JButton fake_answer3 = new JButton("SELECT * FROM Users");
+    private JLabel outcome_;
 
-    SQLInjection(long timer, String textField)
+    SQLInjection(long timer, String textArea)
     {
-        super(timer, textField);
-        this.question = textField;
-        super.frame_.setSize(550, 600);
-        super.frame_.setTitle("SQL Injection!");
-        super.panel_.add(submit);
+        super(timer);
+        this.setSize(550, 600);
+        this.outcome_ = new JLabel();
+        this.textArea_ = new JTextArea(textArea);
+        this.textArea_.setEditable(false);
+        this.add(this.textArea_);
+        this.setVisible(true);
 
-        submit.addActionListener(new ActionListener()
+        JPanel buttonPanel  = new JPanel();
+        buttonPanel.setLayout(new FlowLayout());
+        this.add(buttonPanel);
+        buttonPanel.add(answer);
+        buttonPanel.add(fake_answer1);
+        buttonPanel.add(fake_answer2);
+        buttonPanel.add(fake_answer3);
+        answer.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent event)
             {
-                if (event.getSource() == submit)
+                if (event.getSource() == answer)
                 {
-                    if (validateInput(SQLInjection.super.textField_.getText()))
-                        System.out.println("Player won!");
-                    else
-                        System.out.println("Player lost!");
-
-                   SQLInjection.super.panel_.add(endResult(validateInput(SQLInjection.super.textField_.getText())));
-
+                    boolean input_is_valid = true;
+                    SQLInjection.this.endResult(input_is_valid);
                 }
             }
         });
+
+        fake_answer1.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent event)
+            {
+                if (event.getSource() == fake_answer1)
+                {
+                    boolean input_is_valid = false;
+                    SQLInjection.this.endResult(input_is_valid);
+                }
+            }
+        });
+
+        fake_answer2.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent event)
+            {
+                if (event.getSource() == fake_answer2)
+                {
+                    boolean input_is_valid = false;
+                    SQLInjection.this.endResult(input_is_valid);
+                }
+            }
+        });
+        fake_answer3.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent event)
+            {
+                if (event.getSource() == fake_answer3)
+                {
+                    boolean input_is_valid = false;
+                    SQLInjection.this.endResult(input_is_valid);
+                }
+            }
+        });
+        this.add(outcome_);
     };
 
 
@@ -46,23 +92,16 @@ public class SQLInjection extends MiniGame
         {
             if (input.equals(answer))
                 SQLInjection.this.player_won_ = true;
-
         }
 
         return SQLInjection.this.player_won_;
     }
 
-    public JTextField endResult(boolean submission)
+    public void endResult(boolean input_is_valid)
     {
-        JTextField result = new JTextField();
-        result.setEditable(false);
-
-        if (submission)
-            result.setText("WINNER!");
+        if (input_is_valid)
+            this.outcome_.setText("WINNER!");
         else
-            result.setText("LOSER! DARSHH");
-
-        return result;
+            this.outcome_.setText("LOSER!");
     }
-
 }

@@ -1,22 +1,20 @@
 import java.util.Date;
 import javax.swing.*;
 
-public abstract class MiniGame
+public abstract class MiniGame extends JPanel   
 {
-
     //fields
     //private boolean isInput;
     //protected double timer_;
-    protected JFrame frame_;
-    protected JButton main_menu_; //TODO -- put this on screen
-	protected JPanel panel_;
-	protected JTextField textField_;
-	protected JTextArea textArea_;
-
     protected boolean player_won_;
     long start_time_;
     long elapsed_time_;
     long timer_;
+    protected static final int LEFTARROW_KEY_ = 37;
+    protected static final int UPARROW_KEY_ = 38;
+    protected static final int RIGHTARROW_KEY_ = 39;
+    protected static final int DOWNARROW_KEY_ = 40;
+
 
     //methods
     //protected abstract drawStuff();
@@ -24,32 +22,14 @@ public abstract class MiniGame
     //protected abstract validateInput();
     //protected abstract giveHint();
 
+    //TODO -- add an instructional panel before starting the game. A player should see a list of controls and their function for whatever game. Obviously override in derived classes.
     public MiniGame(long timer)
     {
-        this.frame_ = new JFrame();        
-		frame_.setVisible(true);
+        super();
         this.elapsed_time_ = 0L;
         this.timer_ = timer;
         this.start_time_ = System.currentTimeMillis();
     }
-
-
-    public MiniGame(long timer, String textArea)
-    {
-        this.frame_ = new JFrame();
-        this.panel_ = new JPanel();
-        this.frame_.add(this.panel_);
-        this.textArea_ = new JTextArea(textArea);
-        this.textArea_.setEditable(false);
-        this.panel_.add(this.textArea_);
-        this.textField_ = new JTextField("Enter the Injection: ");
-        this.panel_.add(this.textField_);
-        frame_.setVisible(true);
-        this.elapsed_time_ = 0L;
-        this.timer_ = timer;
-        this.start_time_ = System.currentTimeMillis();
-    }
-
 
     public boolean playerWon()
     {
